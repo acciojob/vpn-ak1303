@@ -1,36 +1,41 @@
+// Note: Do not write @Enumerated annotation above CountryName in this model.
 package com.driver.model;
 
 import javax.persistence.*;
 
 @Entity
+@Table(name = "country")
+
 public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer countryId;
     private CountryName countryName;
     private String code;
+    @JoinColumn
     @OneToOne
     private User user;
+    @JoinColumn
     @ManyToOne
     private ServiceProvider serviceProvider;
 
     public Country() {
     }
 
-    public Country(Integer id, CountryName countryName, String code, User user, ServiceProvider serviceProvider) {
-        this.id = id;
+    public Country(Integer countryId, CountryName countryName, String code, User user, ServiceProvider serviceProvider) {
+        this.countryId = countryId;
         this.countryName = countryName;
         this.code = code;
         this.user = user;
         this.serviceProvider = serviceProvider;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getCountryId() {
+        return countryId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setCountryId(Integer countryId) {
+        this.countryId = countryId;
     }
 
     public CountryName getCountryName() {
